@@ -1,6 +1,5 @@
-// storage.js
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { v4 as uuidv4 } from 'uuid';
+import uuid from 'react-native-uuid'; // 👈 reemplaza uuidv4 por uuid
 
 const SONGS_KEY = 'songs';
 

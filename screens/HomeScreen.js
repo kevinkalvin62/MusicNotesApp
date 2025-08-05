@@ -5,6 +5,7 @@ import {
 import { useIsFocused } from '@react-navigation/native';
 import { getSongs, deleteSong } from '../storage';
 import { format } from 'date-fns';
+import { Ionicons } from '@expo/vector-icons'; // para icono de configuración
 
 export default function HomeScreen({ navigation }) {
   const [songs, setSongs] = useState([]);
@@ -57,6 +58,14 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      {/* Botón Configuración en top-right */}
+      <TouchableOpacity
+        style={styles.settingsBtn}
+        onPress={() => navigation.navigate('Settings')}
+      >
+        <Ionicons name="settings-outline" size={28} color="#333" />
+      </TouchableOpacity>
+
       <FlatList
         data={songs}
         keyExtractor={(item) => item.id}
@@ -64,7 +73,7 @@ export default function HomeScreen({ navigation }) {
         ListEmptyComponent={
           <Text style={styles.empty}>No hay canciones guardadas</Text>
         }
-        contentContainerStyle={{ padding: 10 }}
+        contentContainerStyle={{ padding: 10, paddingTop: 60 }}
       />
 
       <TouchableOpacity
@@ -79,6 +88,12 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fefefe' },
+  settingsBtn: {
+    position: 'absolute',
+    top: 30,
+    right: 20,
+    zIndex: 10,
+  },
   card: {
     backgroundColor: '#fffce6',
     padding: 16,
